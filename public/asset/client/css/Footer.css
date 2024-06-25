@@ -1,0 +1,70 @@
+.footer {
+    background-color: rgb(34, 34, 34);
+    padding: 30px 30px 10px 30px;
+    font-size: 15px;
+}
+.footer img {
+    width: 200px;
+}
+.footer a {
+    color: rgb(187, 184, 184);
+    transition: 0.5s;
+}
+.footer a:hover {
+    color: orange;
+}
+
+.footer .inform h5 {
+    color: gray;
+    font-family: var(--font-sencondary);
+}
+.footer .inform p {
+    color: white;
+}
+.footer .icon ul {
+    display: flex;
+    gap: 20px;
+}
+.footer .icon a {
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 10px 15px;
+    color: gray;
+    border: 1px solid gray;
+    transition: 0.5s;
+}
+.footer .icon a:hover {
+    color: orange;
+    border: 1px solid orange;
+}
+.footer h2 {
+    color: white;
+    font-size: 18px;
+    font-family: var(--font-sencondary);
+}
+.footer ul {
+    transition: 0.5s;
+}
+.footer ul li {
+    margin: 15px 0;
+    font-size: 18px;
+    color: gray;
+}
+.footer ul li:hover {
+    color: white;
+}
+.footer .opening span {
+    color: white;
+    font-size: 20px;
+}
+.footer .line {
+    border-top: 1px solid gray;
+    padding-top: 20px;
+}
+.footer .line p {
+    color: white;
+}
+.footer .line span {
+    color: var(--secondary-color);
+    font-weight: 600;
+}

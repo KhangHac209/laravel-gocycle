@@ -1,0 +1,88 @@
+.cart {
+    margin: 20px auto;
+    font-size: 18px;
+}
+.cart i {
+    cursor: pointer;
+    transition: 0.5s;
+}
+.cart i:hover {
+    color: orange;
+}
+.cart thead {
+    border: 1px solid rgb(213, 209, 209);
+    text-align: center;
+}
+.cart th {
+    border-right: 1px solid rgb(213, 209, 209);
+    text-align: center;
+}
+.cart td {
+    border-right: 1px solid rgb(213, 209, 209);
+    text-align: center;
+    vertical-align: middle;
+}
+.cart img {
+    width: 50%;
+    margin: 0 auto;
+}
+.cart .plus-minus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgb(215, 211, 211);
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+}
+.cart .plus-minus input {
+    border: none;
+    outline: none;
+    text-align: center;
+    width: 30%;
+}
+.cart .total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+}
+.cart .total span {
+    color: orange;
+    font-weight: bold;
+}
+.cart .price {
+    display: inline-block;
+}
+
+@media (max-width: 991px) {
+    .cart img {
+        width: 100%;
+    }
+    .cart th,
+    .cart td {
+        font-size: 12px;
+    }
+    .cart .thID,
+    .cart .thPrice {
+        display: none;
+    }
+    .cart .price,
+    .cart .priceDiscount,
+    .cart .pirceOld {
+        font-size: 14px;
+    }
+    .cart .plus-minus {
+        width: 100%;
+    }
+    .cart .plus-minus input {
+        width: 100%;
+    }
+    .cart .plus-minus input {
+        width: 50%;
+    }
+    .cart .total {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}

@@ -1,0 +1,137 @@
+.order {
+    margin: 20px 0;
+}
+.clickButton {
+    padding: 17px 40px;
+    font-family: "Orbitron", Sans-serif;
+    cursor: pointer;
+    border: 0;
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+    display: inline-block;
+}
+
+.clickButton:hover {
+    letter-spacing: 3px;
+    background-color: orange;
+    color: hsl(0, 0%, 100%);
+}
+
+.clickButton:active {
+    letter-spacing: 3px;
+    background-color: orange;
+    color: hsl(0, 0%, 100%);
+    transform: translateY(10px);
+    transition: 100ms;
+}
+
+.order h2 {
+    font-family: var(--font-sencondary);
+}
+.order input {
+    border: 1px solid rgb(226, 226, 226);
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    outline: none;
+}
+.order .name {
+    display: flex;
+    gap: 20px;
+}
+.cartOrder i {
+    cursor: pointer;
+    transition: 0.5s;
+}
+.cartOrder i:hover {
+    color: orange;
+}
+.cartOrder thead {
+    border: 1px solid rgb(213, 209, 209);
+    text-align: center;
+}
+.cartOrder th {
+    border-right: 1px solid rgb(213, 209, 209);
+    text-align: center;
+}
+.cartOrder td {
+    border-right: 1px solid rgb(213, 209, 209);
+    text-align: center;
+    vertical-align: middle;
+    font-family: var(--font-sencondary);
+}
+.cartOrder img {
+    width: 100%;
+    margin: 0 auto;
+}
+.cartOrder input {
+    border: none;
+    outline: none;
+    text-align: center;
+}
+.order .total {
+    margin: 30px 0;
+}
+.order h3 {
+    margin: 20px 0;
+}
+.order span {
+    color: orange;
+    font-weight: bold;
+}
+.order .coupon {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.back {
+    font-size: 30px;
+    color: orange;
+    cursor: pointer;
+}
+.order .coupon a {
+    padding: 10px 15px;
+    background-color: orange;
+    color: white;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+.order .coupon a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Thiết kế đáp ứng cho textarea */
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
+    min-height: 100px; /* Đặt chiều cao tối thiểu */
+}
+
+/* Điều chỉnh kích thước và font chữ cho các kích thước màn hình nhỏ hơn */
+@media (max-width: 768px) {
+    textarea {
+        font-size: 14px;
+        min-height: 80px;
+    }
+}
+
+/* Điều chỉnh kích thước và font chữ cho các kích thước màn hình nhỏ hơn */
+@media (max-width: 480px) {
+    textarea {
+        font-size: 12px;
+        min-height: 60px;
+    }
+    .thID,
+    .thDelete {
+        display: none;
+    }
+}

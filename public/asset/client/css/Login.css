@@ -1,0 +1,38 @@
+.loginRegister {
+    margin: 20px 0;
+}
+.loginRegister .row {
+    gap: 20px;
+}
+.loginRegister h2 {
+    font-family: var(--font-sencondary);
+}
+.loginRegister h3 {
+    font-size: 17px;
+    color: rgb(179, 176, 176);
+}
+.loginRegister h4 {
+    font-size: 15px;
+    margin: 5px 0;
+}
+.loginRegister input {
+    border: 1px solid orange;
+    outline: none;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+.loginRegister button {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: orange;
+    border: 2px solid var(--secondary-color);
+    color: white;
+    transition: 0.5s;
+    margin: 10px 0;
+}
+.loginRegister button:hover {
+    background-color: var(--secondary-color);
+}

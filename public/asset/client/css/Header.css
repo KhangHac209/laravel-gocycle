@@ -1,0 +1,152 @@
+.header {
+    background-color: white;
+}
+.header .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(232, 230, 230);
+}
+.header .info .left {
+    display: flex;
+    gap: 30px;
+}
+.header .info .left i {
+    color: var(--secondary-color);
+}
+.header .info .right ul {
+    display: flex;
+    gap: 30px;
+}
+.header .info .right ul li {
+    padding-top: 10px;
+}
+.header .info .right ul a {
+    font-size: 20px;
+    transition: 0.5s;
+}
+.header .info .right ul a:hover {
+    color: orange;
+}
+.header .search {
+    position: relative;
+}
+.header .search input {
+    padding: 5px 25px;
+    width: 100%;
+    border: 1px solid var(--secondary-color);
+    border-radius: 50px;
+    outline: none;
+}
+.header .search input::placeholder {
+    color: var(--secondary-color);
+}
+.header .search .fa-magnifying-glass {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: var(--secondary-color);
+}
+.header img {
+    width: 150px;
+    margin-right: 50px;
+}
+.header .cart {
+    margin-left: 10px;
+    position: relative;
+}
+.header .cart a {
+    font-size: 25px;
+    transition: 0.3s;
+}
+.header .cart a:hover {
+    color: orange;
+}
+.header .cart span {
+    position: absolute;
+    text-align: center;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    top: -10px;
+    left: 10px;
+}
+.header .choice {
+    gap: 50px;
+}
+.header .choice a {
+    font-weight: 600;
+    font-family: var(--font-sencondary);
+    transition: 0.5s;
+}
+.header .choice a.active {
+    background-color: orange;
+    color: white;
+    border-radius: 5px;
+}
+.header .choice a:hover {
+    color: orange;
+    font-weight: bold;
+}
+.header .login {
+    margin-left: 40px;
+    font-size: 20px;
+    transition: 0.5s;
+}
+.header .login:hover {
+    color: orange;
+}
+.header .user {
+    margin-left: 30px;
+    display: flex;
+    gap: 10px;
+}
+.header .user a {
+    font-family: var(--font-sencondary);
+    font-size: 15px;
+    transition: 0.5s;
+}
+.header .user a:hover {
+    font-weight: bold;
+    color: orange;
+}
+@media (max-width: 995px) {
+    .header .cart {
+        order: 1; /* Đảo vị trí của phần giỏ hàng và biểu tượng thanh điều hướng */
+    }
+
+    .navbar-toggler {
+        order: 2; /* Đảo vị trí của phần giỏ hàng và biểu tượng thanh điều hướng */
+    }
+}
+@media (max-width: 768px) {
+    .header .info .right {
+        display: none;
+    }
+    .header .info .right {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .info .left {
+        display: none;
+    }
+    .header img {
+        width: 120px;
+    }
+}
+.listSearch {
+    text-align: center;
+}
+.listSearch h3 {
+    color: var(--secondary-color);
+}
+.listSearch h2 {
+    text-transform: uppercase;
+}
+.listSearch span {
+    text-align: center;
+}

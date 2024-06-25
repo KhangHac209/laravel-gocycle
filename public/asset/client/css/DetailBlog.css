@@ -1,0 +1,43 @@
+.detailBlog {
+    margin: 20px 0;
+}
+.detailBlog img {
+    width: 100%;
+}
+.detailBlog p {
+    margin: 10px 0;
+}
+.detailBlog .thumb {
+    margin: 20px 0;
+}
+.detailBlog .thumbleft {
+    font-size: 20px;
+    text-align: center;
+    margin: 30px 0;
+}
+.detailBlog .thumbleft img {
+    width: 60%;
+    margin: 0 auto;
+}
+.detailBlog h3 {
+    font-weight: bold;
+}
+.detailBlog h3,
+.detailBlog h4,
+.detailBlog h2 {
+    font-family: var(--font-sencondary);
+}
+.detailBlog .recent .list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.detailBlog .recent .list .thumb img {
+    width: 150px;
+    height: 130px;
+}
+
+.detailBlog .recent .list .title h3 {
+    font-size: 20px;
+}
+

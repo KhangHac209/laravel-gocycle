@@ -1,0 +1,25 @@
+.review {
+    margin: 20px 5px;
+}
+.review img {
+    width: 150px;
+    border-radius: 50%;
+}
+.review h3 {
+    margin: 10px 0;
+    font-family: var(--font-sencondary);
+}
+.review p {
+    color: rgb(153, 153, 153);
+}
+@media (max-width: 790px) {
+    .review img {
+        width: 100px;
+    }
+    .review h3 {
+        font-size: 15px;
+    }
+    .review p {
+        font-size: 12px;
+    }
+}

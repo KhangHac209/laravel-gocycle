@@ -1,0 +1,67 @@
+.products {
+    margin: 20px 0;
+}
+.brand {
+    margin-bottom: 20px;
+}
+.brand input {
+    border: none;
+    outline: none;
+}
+.brand h2 {
+    font-family: var(--font-sencondary);
+}
+.brand .inputSearch {
+    border: 1px solid gray;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    margin: 20px 0;
+}
+.brand ul li {
+    font-family: var(--font-sencondary);
+    font-size: 20px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: 0.5s;
+    overflow: hidden;
+}
+.brand ul li:hover {
+    font-weight: bold;
+}
+.products h4 {
+    font-family: var(--font-sencondary);
+    margin-left: 10px;
+    font-size: 30px;
+}
+.products .option {
+    display: inline-block;
+    list-style: none;
+}
+.products .option li {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+    font-family: var(--font-sencondary);
+}
+
+@media (max-width: 900px) {
+    .products .option {
+        display: flex;
+        flex-wrap: wrap; /* Cho phép các phần tử trên cùng một dòng chuyển xuống khi không đủ không gian */
+        justify-content: center; /* Canh giữa các phần tử trong trường hợp không đủ không gian */
+    }
+    .products .option li {
+        flex: 0 0 calc(50% - 20px); /* Chia cột thành 2 cột và để 20px khoảng cách giữa chúng */
+        margin-bottom: 10px; /* Khoảng cách giữa các hàng */
+        font-size: 15px;
+    }
+    .brand .inputSearch {
+        width: 100%; /* Đảm bảo ô tìm kiếm sử dụng toàn bộ chiều rộng khi trên màn hình nhỏ */
+    }
+}

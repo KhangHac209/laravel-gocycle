@@ -1,0 +1,76 @@
+.contact .hook h3::after {
+    display: none;
+}
+.contact {
+    margin-bottom: 20px;
+}
+
+.contact img {
+    height: 550px;
+}
+.contact p {
+    color: rgb(148, 146, 146);
+}
+.contact .info h3 {
+    font-family: var(--font-sencondary);
+    padding-top: 25px;
+}
+.contact .info p {
+    font-size: 18px;
+}
+.contact .name {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.contact .title {
+    margin: 0px;
+}
+.contact .name input {
+    width: 100%;
+    padding: 10px 15px;
+    outline: none;
+    border: none;
+    background-color: rgb(217, 217, 217);
+}
+.contact .mess {
+    width: 100%;
+    padding: 10px 15px;
+    outline: none;
+    border: none;
+    background-color: rgb(217, 217, 217);
+    height: 150px;
+}
+.send {
+    padding: 17px 40px;
+    font-family: "Orbitron", Sans-serif;
+    cursor: pointer;
+    border: 0;
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+    display: inline-block;
+}
+
+.send:hover {
+    letter-spacing: 3px;
+    background-color: orange;
+    color: hsl(0, 0%, 100%);
+}
+
+.send:active {
+    letter-spacing: 3px;
+    background-color: orange;
+    color: hsl(0, 0%, 100%);
+    transform: translateY(10px);
+    transition: 100ms;
+}
+.contact .map {
+    width: 100%;
+    border: 1px solid orange;
+    padding: 5px;
+}

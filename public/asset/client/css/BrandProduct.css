@@ -1,0 +1,27 @@
+.option {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+.option li {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+    font-family: var(--font-sencondary);
+}
+.choice.active {
+    background-color: orange;
+    color: white;
+}
+@media (max-width: 900px) {
+    .option {
+        display: inline-block;
+    }
+    .option li {
+        display: inline-block;
+        font-size: 15px;
+    }
+}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,9 @@ Route::get('home', function () {
 Route::get('contact', function () {
     return view('client.pages.contact');
 });
-Route::get('blog', function () {
-    return view('client.pages.blog');
-});
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
+
 // Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::post('cart/add-product', [CartController::class, 'add'])->name('cart.add.product');
 Route::get('cart', [CartController::class, 'index'])->name('cart');

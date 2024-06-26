@@ -1,36 +1,23 @@
 @extends('client.layout.master')
 
 @section('content')
-    <html>
-
-    <head>
-        <title>My Now Amazing Webpage</title>
-
-    </head>
-
-    <body>
-
-        <div class="autoplay">
-            <div>your content</div>
-            <div>your content</div>
-            <div>your content</div>
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                @foreach ($blog as $item)
+                    <div class="col-lg-6 col-md-6 mt-3">
+                        <a href="{{ route('blog.show', $item->id) }}">
+                            <div class="thumb">
+                                <img src="{{ $item->thumb }}" alt="" />
+                                <p>Mark 3,2024</p>
+                            </div>
+                            <h3>{{ $item->title }}</h3>
+                            <p>{{ $item->description }}</p>
+                            <a href="{{ route('blog.show', $item->id) }}" class="clickButton">Read More</a>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
         </div>
-
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('.autoplay').slick({
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 1000,
-                });
-            });
-        </script>
-
-    </body>
-
-    </html>
+    </div>
 @endsection

@@ -35,6 +35,10 @@
     <link rel="stylesheet" href="{{ asset('asset/client/css/index.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/client/css/Footer.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/client/css/AboutUs.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/Blog.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/DetailBlog.css') }}" type="text/css">
+
+
 
 
 </head>
@@ -70,7 +74,7 @@
     <script type="text/javascript" src="{{ asset('asset/slick/slick.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @yield('my-script')
-    
+
 </body>
 
 </html>

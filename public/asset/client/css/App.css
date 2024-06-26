@@ -45,3 +45,8 @@ ul {
     color: orange;
     font-weight: bold;
 }
+.back {
+    font-size: 30px;
+    color: orange;
+    cursor: pointer;
+}

@@ -22,9 +22,10 @@ Route::get('home', function () {
 Route::get('contact', function () {
     return view('client.pages.contact');
 });
-Route::get('product', function () {
+Route::get('products', function () {
     return view('client.pages.list_product');
 });
+Route::get('/product', [ProductController::class, 'showProducts']);
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');

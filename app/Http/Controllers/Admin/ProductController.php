@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductStoreRequest;
-use App\Models\Product;
-use App\Models\ProductCategory;
+use App\Models\Admin\Product;
+use App\Models\Admin\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -105,10 +105,13 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::findOrFail($id);
-        return view('product.show', compact('product'), ['products' => $product]);
     }
-
+    public function showProducts()
+    {
+        $products = Product::all();
+        //dd($products);
+        return view('client.pages.cardproduct', ['products' => $products]);
+    }
     /**
      * Show the form for editing the specified resource.
      */

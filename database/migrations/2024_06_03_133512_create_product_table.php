@@ -17,6 +17,7 @@ return new class extends Migration
             $table->float('price')->unsigned();
             $table->text('short_description');
             $table->integer('qty')->unsigned();
+            $table->integer('discount');
             $table->string('shipping', 255);
             $table->float('weight')->unsigned();
             $table->string('image_url', 255);

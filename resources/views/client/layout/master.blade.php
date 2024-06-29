@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="{{ asset('asset/client/css/Products.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/client/css/Title.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/client/css/BrandProduct.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/CartProduct.css') }}" type="text/css">
 
 
 

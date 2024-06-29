@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductCategoryStoreRequest;
 use App\Http\Requests\ProductCategoryUpdateRequest;
-use App\Models\ProductCategory;
+use App\Models\Admin\ProductCategory;
 use Database\Factories\ProductFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

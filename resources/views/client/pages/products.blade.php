@@ -6,7 +6,7 @@
                 <div class="card-product">
                     <a href="{{ url('/product/' . $product['id']) }}">
                         <div class="thumb">
-                            <img src="{{ $product['thumb'] }}" alt="">
+                            <img src="{{ $product['image_url'] }}" alt="">
                             @if ($product['discount'] === 30)
                                 <div class="sale">{{ $product['discount'] }}%</div>
                             @endif

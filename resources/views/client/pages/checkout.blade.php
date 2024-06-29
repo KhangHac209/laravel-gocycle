@@ -46,7 +46,7 @@
                                                 <td class="thID">{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>
-                                                    <img src="{{ asset($item->thumb) }}" alt="" />
+                                                    <img src="{{ asset($item->image_url) }}" alt="" />
                                                 </td>
                                                 <td>
                                                     <div class="plus-minus">

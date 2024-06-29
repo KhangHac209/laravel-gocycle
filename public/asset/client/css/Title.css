@@ -5,6 +5,9 @@
 .hook {
     padding: 10px 50px;
 }
+.title h2 {
+    font-family: var(--font-sencondary);
+}
 .hook h3 {
     position: relative;
     color: var(--secondary-color);

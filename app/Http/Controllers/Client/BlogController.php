@@ -39,7 +39,7 @@ class BlogController extends Controller
     public function show($id)
     {
         $blog = Blog::findOrFail($id);
-        $recentBlogs = Blog::orderBy('created_at', 'description')->take(5)->get();
+        $recentBlogs = Blog::orderBy('created_at', 'desc')->take(5)->get();
         return view('client.pages.blog_detail', compact('blog', 'recentBlogs'));
     }
 

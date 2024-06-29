@@ -12,8 +12,11 @@
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="title">
-                        <h4>About Us</h4>
-                        <h2>Bicycles Are Our Works, But Also Our Passion</h2>
+                        @include('components.Title', [
+                            'sub' => 'About Us',
+                            'title' => 'Bicycles Are Our Works, But Also Our Passion',
+                        ])
+
                     </div>
                     <p>
                         Each of us has our own challenges, goals and reasons to ride. At Go Cycle, our purpose is to
@@ -41,8 +44,10 @@
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="title">
-                        <h4>WHY CHOOSE US</h4>
-                        <h2>Ride With Style, Convenient, Safe And Relaxed</h2>
+                        @include('components.Title', [
+                            'sub' => 'WHY CHOOSE US',
+                            'title' => 'Ride With Style, Convenient, Safe And Relaxed',
+                        ])
                     </div>
                     <p>
                         Go Cycle has long been one of cycling's main catalysts for change. We introduced lighter,

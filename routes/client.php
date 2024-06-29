@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
@@ -21,8 +22,16 @@ Route::get('home', function () {
 Route::get('contact', function () {
     return view('client.pages.contact');
 });
+Route::get('product', function () {
+    return view('client.pages.list_product');
+});
+
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/detail/{id}', [ProductController::class, 'show'])->name('product.show');
+
+
+
 
 // Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::post('cart/add-product', [CartController::class, 'add'])->name('cart.add.product');

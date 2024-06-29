@@ -37,7 +37,15 @@
     <link rel="stylesheet" href="{{ asset('asset/client/css/AboutUs.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/client/css/Blog.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/client/css/DetailBlog.css') }}" type="text/css">
-
+    <link rel="stylesheet" href="{{ asset('asset/client/css/CardProduct.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/DetailProduct.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/ListProduct.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/BackTop.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/Order.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/Review.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/Products.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/Title.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/BrandProduct.css') }}" type="text/css">
 
 
 
@@ -59,6 +67,7 @@
 
     @yield('content')
 
+    @include('client.pages.backtop');
     @include('client.blocks.footer')
     <!-- Footer Section End -->
 

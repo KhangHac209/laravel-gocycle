@@ -1,26 +1,26 @@
 <div class="container">
-    <h2>Our Products</h2>
+    @include('components.Title', ['sub' => 'Our Products', 'title' => 'All Products'])
     <div class="slider-container">
         <div class="product-slider">
-            @foreach ($products as $product)
+            @foreach ($datas as $product)
                 <div class="card-product">
-                    <a href="{{ url('/product/' . $product['id']) }}">
+                    <a href="{{ url('/detail/' . $product->id) }}">
                         <div class="thumb">
-                            <img src="{{ $product['image_url'] }}" alt="">
-                            @if ($product['discount'] === 30)
-                                <div class="sale">{{ $product['discount'] }}%</div>
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
+                            @if ($product->discount === 30)
+                                <div class="sale">{{ $product->discount }}%</div>
                             @endif
                         </div>
                         <div class="title">
-                            <h3>{{ $product['brand'] }}</h3>
-                            <h2>{{ $product['name'] }}</h2>
+                            <h3>{{ $product->productCategory->name }}</h3>
+                            <h2>{{ $product->name }}</h2>
                         </div>
                         <p class="price">
-                            <span class="{{ $product['discount'] !== 0 ? 'priceOld' : '' }}">{{ $product['price'] }}.00
+                            <span class="{{ $product->discount !== 0 ? 'priceOld' : '' }}">{{ $product->price }}.00
                                 $</span>
-                            @if ($product['discount'] !== 0)
+                            @if ($product->discount !== 0)
                                 <span
-                                    class="priceDiscount">{{ $product['price'] - $product['price'] * ($product['discount'] / 100) }}.00
+                                    class="priceDiscount">{{ number_format($product->price - $product->price * ($product->discount / 100), 2) }}
                                     $</span>
                             @endif
                         </p>
@@ -29,30 +29,31 @@
             @endforeach
         </div>
     </div>
-    <h2>Sale Off 30%</h2>
+
+    @include('components.Title', ['sub' => 'Sale Off 30%', 'title' => 'Sale Products'])
     <div class="slider-container">
         <div class="sale-slider">
-            @foreach ($products as $product)
-                @if ($product['discount'] !== 0)
+            @foreach ($datas as $product)
+                @if ($product->discount !== 0)
                     <div class="card-product">
-                        <a href="{{ url('/product/' . $product['id']) }}">
+                        <a href="{{ url('/detail/' . $product->id) }}">
                             <div class="thumb">
-                                <img src="{{ $product['thumb'] }}" alt="">
-                                @if ($product['discount'] === 30)
-                                    <div class="sale">{{ $product['discount'] }}%</div>
+                                <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
+                                @if ($product->discount === 30)
+                                    <div class="sale">{{ $product->discount }}%</div>
                                 @endif
                             </div>
                             <div class="title">
-                                <h3>{{ $product['brand'] }}</h3>
-                                <h2>{{ $product['name'] }}</h2>
+                                <h3>{{ $product->productCategory->name }}</h3>
+                                <h2>{{ $product->name }}</h2>
                             </div>
                             <p class="price">
                                 <span
-                                    class="{{ $product['discount'] !== 0 ? 'priceOld' : '' }}">{{ $product['price'] }}.00
+                                    class="{{ $product->discount !== 0 ? 'priceOld' : '' }}">{{ $product->price }}.00
                                     $</span>
-                                @if ($product['discount'] !== 0)
+                                @if ($product->discount !== 0)
                                     <span
-                                        class="priceDiscount">{{ $product['price'] - $product['price'] * ($product['discount'] / 100) }}.00
+                                        class="priceDiscount">{{ number_format($product->price - $product->price * ($product->discount / 100), 2) }}
                                         $</span>
                                 @endif
                             </p>
@@ -71,8 +72,8 @@
         $('.product-slider').slick({
             infinite: true,
             speed: 700,
-            slidesToShow: 4,
-            slidesToScroll: 3,
+            slidesToShow: 3,
+            slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 3000,
             cssEase: "linear",
@@ -96,8 +97,8 @@
         $('.sale-slider').slick({
             infinite: true,
             speed: 700,
-            slidesToShow: 4,
-            slidesToScroll: 3,
+            slidesToShow: 3,
+            slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 3000,
             cssEase: "linear",

@@ -103,14 +103,20 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
     }
-    public function showProducts()
+    // public function showProducts()
+    // {
+    //     $products = Product::all();
+
+    //     //dd($products);
+    //     return view('client.pages.cardproduct', ['products' => $products]);
+    // }
+    public function detail($id)
     {
-        $products = Product::all();
-        //dd($products);
-        return view('client.pages.cardproduct', ['products' => $products]);
+        $product = Product::with('productCategory')->findOrFail($id);
+        return view('client.pages.product_detail', ['product' => $product]);
     }
     /**
      * Show the form for editing the specified resource.

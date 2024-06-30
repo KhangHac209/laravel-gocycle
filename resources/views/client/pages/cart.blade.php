@@ -1,23 +1,5 @@
 @extends('client.layout.master')
 @section('content')
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Shopping Cart</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Shopping Cart</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-
     <!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
         <div class="container">
@@ -35,8 +17,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cart as $item)
-                                    <tr>
+                                @foreach ($cart as $productId => $item)
+                                    <tr id="tr-{{ $productId }}">
                                         <td class="shoping__cart__item">
                                             <img src="img/cart/cart-1.jpg" alt="">
                                             <h5>{{ $item['name'] }}</h5>
@@ -46,7 +28,8 @@
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
-                                                <div class="pro-qty">
+                                                <div data-add-qty="{{ route('cart.add.product.item', ['productId' => $productId]) }}"
+                                                    class="pro-qty">
                                                     <input type="text" value="{{ $item['qty'] }}">
                                                 </div>
                                             </div>
@@ -54,7 +37,8 @@
                                         <td class="shoping__cart__total">
                                             ${{ number_format($item['price'] * $item['qty'], 2) }}
                                         </td>
-                                        <td class="shoping__cart__item__close">
+                                        <td data-delete-item="{{ route('cart.delete.item.cart', ['productId' => $productId]) }}"
+                                            data-product-id="{{ $productId }}" class="shoping__cart__item__close">
                                             <span class="icon_close"></span>
                                         </td>
                                     </tr>
@@ -67,7 +51,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                        <a href="/" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
                         <a href="#" class="primary-btn cart-btn cart-btn-right btn-delete-cart"><span
                                 class="icon_loading"></span>
                             Delete Cart</a>
@@ -75,43 +59,77 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__continue">
-                        <div class="shoping__discount">
-                            <h5>Discount Codes</h5>
-                            <form action="#">
-                                <input type="text" placeholder="Enter your coupon code">
-                                <button type="submit" class="site-btn">APPLY COUPON</button>
-                            </form>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Subtotal <span id="subtotalAmount">${{ number_format($subtotal, 2) }}</span></li>
+                            <li>Total <span id="totalAmount">${{ number_format($total, 2) }}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="" class="clickButton">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Shoping Cart Section End -->
+@endsection
+
 @section('my-script')
     <script type="text/javascript">
         $(document).ready(function(event) {
             $('.btn-delete-cart').on('click', function(event) {
+                event.preventDefault();
                 $.ajax({
                     url: '{{ route('cart.destroy') }}',
                     type: 'GET',
                     success: function(response) {
-                        $('#table_cart').empty();
-                        alert(response.message);
+                        $('#table_cart tbody').empty();
+                        $('#subtotalAmount').text('$0.00');
+                        $('#totalAmount').text('$0.00');
+                        Swal.fire(response.message);
                     }
-                })
+                });
             });
+
+            $('.shoping__cart__item__close').on('click', function() {
+                var productId = $(this).data('product-id');
+                var url = $(this).data('delete-item');
+                $.ajax({
+                    type: 'DELETE',
+                    url: url,
+                    success: function(response) {
+                        $('#tr-' + productId).remove();
+                        updateCartTotal(response.subtotal, response.total);
+                        Swal.fire(response.message);
+                    }
+                });
+            });
+
+            $('.pro-qty input').on('change', function() {
+                var qty = $(this).val();
+                var productId = $(this).closest('div.pro-qty').data('product-id');
+                var url = $(this).closest('div.pro-qty').data('add-qty') + '/' + qty;
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        updateCartTotal(response.subtotal, response.total);
+                        Swal.fire(response.message);
+                    }
+                });
+            });
+
+            function updateCartTotal(subtotal, total) {
+                $('#subtotalAmount').text('$' + subtotal.toFixed(2));
+                $('#totalAmount').text('$' + total.toFixed(2));
+            }
         });
     </script>
-@endsection
 @endsection

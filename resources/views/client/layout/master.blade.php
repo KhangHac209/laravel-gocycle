@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="{{ asset('asset/client/css/Title.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/client/css/BrandProduct.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/client/css/CartProduct.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/client/css/pagination.css') }}" type="text/css">
 
 
 
@@ -83,6 +84,7 @@
     <script src="{{ asset('asset/client/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ asset('asset/slick/slick.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('my-script')
 
 </body>

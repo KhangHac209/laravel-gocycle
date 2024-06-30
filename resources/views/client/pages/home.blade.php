@@ -4,7 +4,7 @@
     @include('client.pages.banner')
 
 
-    {{-- @include('client.pages.products') --}}
+    @include('client.pages.products')
 
     @include('client.pages.brand_product')
     <section>

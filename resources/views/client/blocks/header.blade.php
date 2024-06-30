@@ -65,10 +65,13 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
+            @php
+                $totalProductInCart = count(session()->get('cart', []));
+            @endphp
             <a href="{{ url('/cart') }}" class="cart">
                 <i class="fa-solid fa-cart-shopping"></i>
-                {{-- <span>{{ Cart::count() }}</span> --}}
-                <span>3</span>
+                <span>{{ $totalProductInCart }}</span></a></li>
+
             </a>
             <div class="user">
                 @guest

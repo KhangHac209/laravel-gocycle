@@ -18,4 +18,8 @@ class Product extends Model
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id')->withTrashed();
     }
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class, 'product_id');
+    }
 }

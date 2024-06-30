@@ -1,6 +1,7 @@
 @extends('client.layout.master')
+
 @section('content')
-    {{-- <div class="products">
+    <div class="products">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -13,7 +14,7 @@
                                         Products</a></li>
                                 @foreach ($brands as $brand)
                                     <li><a
-                                            href="{{ route('products.index', ['brand' => $brand->brand, 'min_price' => request('min_price'), 'max_price' => request('max_price')]) }}">{{ $brand->brand }}</a>
+                                            href="{{ route('products.index', ['brand' => $brand->name, 'min_price' => request('min_price'), 'max_price' => request('max_price')]) }}">{{ $brand->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -47,20 +48,74 @@
                     <div class="row">
                         <h4>{{ request('brand') ?? 'All Products' }}</h4>
                         @foreach ($products as $product)
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="{{ $product->thumb }}" class="card-img-top" alt="{{ $product->name }}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $product->name }}</h5>
-                                        <p class="card-text">{{ $product->brand }}</p>
-                                        <p class="card-text">${{ $product->price }}</p>
+                            <div class="card-product col-md-4">
+                                <a href="{{ url('/detail/' . $product->id) }}">
+                                    <div class="thumb">
+                                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
+                                        @if ($product->discount === 30)
+                                            <div class="sale">{{ $product->discount }}%</div>
+                                        @endif
                                     </div>
-                                </div>
+                                    <div class="title">
+                                        <h3>{{ $product->productCategory->name }}</h3>
+                                        <h2>{{ $product->name }}</h2>
+                                    </div>
+                                    <p class="price">
+                                        <span
+                                            class="{{ $product->discount !== 0 ? 'priceOld' : '' }}">{{ $product->price }}.00
+                                            $</span>
+                                        @if ($product->discount !== 0)
+                                            <span
+                                                class="priceDiscount">{{ number_format($product->price - $product->price * ($product->discount / 100), 2) }}
+                                                $</span>
+                                        @endif
+                                    </p>
+                                </a>
                             </div>
                         @endforeach
+                        <div class="per-page">
+                            @include('components.paginationProduct')
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
+    <script>
+        function filterProducts(brand) {
+            $.ajax({
+                url: '{{ route('products.index') }}',
+                type: 'GET',
+                data: {
+                    brand: brand,
+                    min_price: '{{ request('min_price') }}',
+                    max_price: '{{ request('max_price') }}'
+                },
+                success: function(response) {
+                    $('#product-list').html(response);
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+
+        function filterByPrice(minPrice, maxPrice) {
+            $.ajax({
+                url: '{{ route('products.index') }}',
+                type: 'GET',
+                data: {
+                    brand: '{{ request('brand') }}',
+                    min_price: minPrice,
+                    max_price: maxPrice
+                },
+                success: function(response) {
+                    $('#product-list').html(response);
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+    </script>
 @endsection

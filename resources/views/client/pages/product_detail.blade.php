@@ -90,7 +90,9 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('An error occurred. Please try again.');
+                    Swal.fire('Please login to add items to your cart.').then(() => {
+                        window.location.href = '{{ route('login') }}';
+                    });
                 });
         }
 

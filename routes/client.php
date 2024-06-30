@@ -5,6 +5,7 @@ use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ListProductController;
+use App\Http\Controllers\GoogleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('header', function () {
@@ -32,7 +33,15 @@ Route::prefix('cart')->controller(CartController::class)->name('cart.')->middlew
     Route::post('add-product', 'add')->name('add');
     Route::get('',  'index')->name('index');
     Route::delete('delete/{productId}', 'delete')->name('delete');
-    Route::post('add-product/{productId}',  'addProductItem')->name('add.product.item');
-    Route::delete('delete-item/{productId}', 'deleteItemFromCart')->name('delete.item.cart');
+    Route::get('add-product-item-cart/{productId}/{qty?}',  'addProductItem')->name('add.product.item');
+    Route::get('delete-item-cart/{productId}', 'deleteItem')->name('delete.item.cart');
     Route::get('destroy', 'destroy')->name('destroy');
+    Route::get('checkout', 'checkout')->name('checkout');
 });
+Route::post('placeOrder', [CartController::class, 'placeOrder'])->name('checkout.placeOrder')->middleware('auth');
+
+Route::get('/google/redirect', [GoogleController::class, 'redirect'])->name('google.redirect');
+
+Route::get('/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
+
+Route::get('vnpay_callback', [CartController::class, 'vnpayCallback'])->name('vnpay_callback');

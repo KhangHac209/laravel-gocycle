@@ -58,18 +58,21 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="shoping__continue">
-
-                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span id="subtotalAmount">${{ number_format($subtotal, 2) }}</span></li>
-                            <li>Total <span id="totalAmount">${{ number_format($total, 2) }}</span></li>
+                            @php $totalPrice=0; @endphp
+                            @foreach ($cart as $productId => $item)
+                                @php
+                                    $totalPrice += $item['price'] * $item['qty'];
+                                @endphp
+                            @endforeach
+                            <li>Subtotal <span id="subtotalAmount">${{ number_format($totalPrice, 2) }}</span></li>
+                            <li>Total <span id="totalAmount">${{ number_format($totalPrice, 2) }}</span></li>
                         </ul>
-                        <a href="" class="clickButton">PROCEED TO CHECKOUT</a>
+                        <a href="{{ route('cart.checkout') }}" class="clickButton">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
@@ -87,49 +90,55 @@
                     url: '{{ route('cart.destroy') }}',
                     type: 'GET',
                     success: function(response) {
-                        $('#table_cart tbody').empty();
-                        $('#subtotalAmount').text('$0.00');
-                        $('#totalAmount').text('$0.00');
+                        $('#table_cart').empty();
                         Swal.fire(response.message);
                     }
-                });
+                })
             });
+            $('.qtybtn').on('click', function() {
+                var btn = $(this);
+                var qty = parseInt(btn.siblings('input').val());
+                if (btn.hasClass('inc')) {
+                    qty += 1;
+                } else if (btn.hasClass('dec')) {
+                    qty -= 1;
+                }
 
+                var url = btn.parent().data('add-qty');
+                url += "/" + qty;
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function(response) {
+                        var productId = btn.parent().data('product-id');
+                        if (qty === 0) {
+                            $('#tr-' + productId).empty();
+                        } else {
+                            Swal.fire(response.message);
+                        }
+                    }
+                });
+            })
             $('.shoping__cart__item__close').on('click', function() {
                 var productId = $(this).data('product-id');
-                var url = $(this).data('delete-item');
+                var url = $(this).data('delete-item')
                 $.ajax({
-                    type: 'DELETE',
+                    type: 'GET',
                     url: url,
                     success: function(response) {
-                        $('#tr-' + productId).remove();
-                        updateCartTotal(response.subtotal, response.total);
+                        $('#tr-' + productId).empty();
+
                         Swal.fire(response.message);
                     }
-                });
+                })
             });
 
-            $('.pro-qty input').on('change', function() {
-                var qty = $(this).val();
-                var productId = $(this).closest('div.pro-qty').data('product-id');
-                var url = $(this).closest('div.pro-qty').data('add-qty') + '/' + qty;
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        updateCartTotal(response.subtotal, response.total);
-                        Swal.fire(response.message);
-                    }
-                });
-            });
 
-            function updateCartTotal(subtotal, total) {
-                $('#subtotalAmount').text('$' + subtotal.toFixed(2));
-                $('#totalAmount').text('$' + total.toFixed(2));
-            }
+
+            // function updateCartTotal(subtotal, total) {
+            //     $('#subtotalAmount').text('$' + subtotal.toFixed(2));
+            //     $('#totalAmount').text('$' + total.toFixed(2));
+            // }
         });
     </script>
 @endsection

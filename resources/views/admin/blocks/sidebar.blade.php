@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/" class="brand-link">
         <img src="{{ asset('asset/admin/dist/img/logoBicycle.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: 0.8" />
         <span class="brand-text font-weight-light">GoCycle</span>
@@ -33,27 +33,27 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
+                            <a href="{{ route('admin.product_category.index') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
+                            <a href="{{ route('admin.product.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('admin.product_category.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Blog Category</p>
+                                <p>Create Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('admin.product.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Blog</p>
+                                <p>Create Product</p>
                             </a>
                         </li>
                     </ul>

@@ -12,7 +12,7 @@
         @foreach ($datas as $data)
             <div class="col-lg-4 product-item" data-category="{{ $data->productCategory->name }}">
                 <div class="card-product">
-                    <a href="{{ url('/product/' . $data->id) }}">
+                    <a href="{{ url('/detail/' . $data->id) }}">
                         <div class="thumb">
                             <img src="{{ $data->image_url }}" alt="{{ $data->name }}">
                             @if ($data->discount === 30)

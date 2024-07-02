@@ -50,6 +50,7 @@
     font-family: var(--font-sencondary);
 }
 
+
 @media (max-width: 900px) {
     .products .option {
         display: flex;

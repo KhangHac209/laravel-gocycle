@@ -1,7 +1,9 @@
 .card-product {
     color: black;
 }
-
+.slick-slide {
+    margin-left: 10px;
+}
 .card-product .thumb img {
     border-radius: 10px;
 }

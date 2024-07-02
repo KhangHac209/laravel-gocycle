@@ -39,7 +39,7 @@
             @php
                 $totalPrice = 0;
             @endphp
-            $@foreach ($order->orderItems as $item)
+            @foreach ($order->orderItems as $item)
                 @php
                     $totalPrice += $item->price * $item->qty;
                 @endphp

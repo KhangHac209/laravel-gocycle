@@ -95,61 +95,44 @@
                     }
                 })
             });
-
-            // Update quantity in the cart
-            $('.pro-qty input').on('change', function() {
-                var qty = $(this).val();
-                var url = $(this).parent().data('add-qty');
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: {
-                        qty: qty,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        updateCartUI(response);
-                        Swal.fire(response.message);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                        Swal.fire('Failed to update cart.');
-                    }
-                });
-            });
-
-            // Delete item from cart
             $('.shoping__cart__item__close').on('click', function() {
                 var productId = $(this).data('product-id');
-                var url = $(this).data('delete-item');
+                var url = $(this).data('delete-item')
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: url,
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
                     success: function(response) {
-                        $('#tr-' + productId).remove();
-                        updateCartUI(response);
+                        $('#tr-' + productId).empty();
+
                         Swal.fire(response.message);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                        Swal.fire('Failed to remove item.');
+                    }
+                })
+            });
+            $('.qtybtn').on('click', function() {
+                var btn = $(this);
+                var qty = parseInt(btn.siblings('input').val());
+                if (btn.hasClass('inc')) {
+                    qty += 1;
+                } else if (btn.hasClass('dec')) {
+                    qty -= 1;
+                }
+
+                var url = btn.parent().data('add-qty');
+                url += "/" + qty;
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function(response) {
+                        var productId = btn.parent().data('product-id');
+                        if (qty === 0) {
+                            $('#tr-' + productId).empty();
+                        } else {
+                            Swal.fire(response.message);
+                        }
                     }
                 });
-            });
+            })
 
-            // Function to update cart UI
-            function updateCartUI(data) {
-                $('#subtotalAmount').text('$' + data.subtotal.toFixed(2));
-                $('#totalAmount').text('$' + data.total.toFixed(2));
-                $.each(data.items, function(productId, item) {
-                    var row = $('#tr-' + productId);
-                    row.find('.shoping__cart__quantity input').val(item.qty);
-                    row.find('.shoping__cart__total').text('$' + (item.qty * item.price).toFixed(2));
-                });
-            }
         });
     </script>
 @endsection

@@ -84,3 +84,33 @@
         });
     </script>
 @endsection
+@section('my-script')
+    <script type="text/javascript">
+        $(document).ready(function(event) {
+            $('.btn-add-to-cart').on('click', function(event) {
+                event.preventDefault();
+                var productId = $(this).data('product-id');
+
+                $.ajax({
+                    url: "{{ route('cart.add') }}",
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        productId: productId,
+                    },
+                    success: function(response) {
+                        $('.fa-shopping-bag').siblings('span').html(response.totalProducts);
+                        $('.header__cart__price').children('span').html(response.totalPrice);
+
+                        Swal.fire(response.message);
+                    },
+                    statusCode: {
+                        401: function() {
+                            window.location.href = "{{ route('login') }}";
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+@endsection

@@ -14,27 +14,28 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Full Name<span>*</span></p>
-                                        <input type="text" name="name" value="{{ $user->name }}">
+                                        <input type="text" name="name" id="name" value="{{ $user->name }}">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Your Address" class="checkout__input__add">
+                                <input type="text" placeholder="Your Address" class="checkout__input__add" name="address"
+                                    id="address">
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" name="phone" value="{{ $user->phone }}">
+                                        <input type="text" name="phone" id="phone" value="{{ $user->phone }}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" name="email" value="{{ $user->email }}">
+                                        <input type="text" name="email" id="email" value="{{ $user->email }}">
                                     </div>
                                 </div>
                             </div>
@@ -102,8 +103,16 @@
 @section('my-script')
     <script type="text/javascript">
         document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            var phone = document.getElementById('phone').value;
+            var email = document.getElementById('email').value;
             var checkboxes = document.querySelectorAll('input[name="payment_method"]:checked');
-            if (checkboxes.length === 0) {
+
+            if (!name || !address || !phone || !email) {
+                event.preventDefault();
+                Swal.fire('Please fill in all required fields.');
+            } else if (checkboxes.length === 0) {
                 event.preventDefault();
                 Swal.fire('Please select a payment method.');
             }

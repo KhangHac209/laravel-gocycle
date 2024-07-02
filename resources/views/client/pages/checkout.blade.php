@@ -88,7 +88,7 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                <button type="submit" class="clickButton">PLACE ORDER</button>
+                                <button type="submit" id="placeOrder" class="clickButton">PLACE ORDER</button>
                             </div>
                         </div>
                     </div>

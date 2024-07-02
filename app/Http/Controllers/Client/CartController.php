@@ -180,6 +180,7 @@ class CartController extends Controller
                 $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
 
                 //header('Location: ' . $vnp_Url);
+                DB::commit();
                 return redirect()->to($vnp_Url);
             } else {
                 $orderPayment = new OrderPayment();
@@ -195,10 +196,9 @@ class CartController extends Controller
 
                 // Public event
                 event(new OrderSuccessEvent($order));
-                DB::commit();
             }
-            DB::commit();
-            return redirect()->route('home.index')->with('success', 'Dat hang thanh cong');
+
+            return redirect()->route('home.index')->with('success', 'Order Success');
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());
@@ -223,9 +223,9 @@ class CartController extends Controller
     public function vnpayCallback(Request $request)
     {
         $order = Order::find($request->vnp_TxnRef);
-        
+
         $orderPayment = new OrderPayment();
-        dd($orderPayment->total);
+        // dd($orderPayment->total);
         $orderPayment->total = $order->total;
         $orderPayment->payment_method = 'vnpay';
         $orderPayment->status = $request->vnp_ResponseCode === '00' ? 'success' : 'fail';
@@ -237,12 +237,12 @@ class CartController extends Controller
             event(new OrderSuccessEvent($order));
             session()->put('cart', []);
 
-            $message = 'Dat hang thanh cong';
+            $message = 'Order Success';
         } else {
-            $message = 'Dat hang that bai';
+            $message = 'Order Failed';
         }
 
         $orderPayment->save();
-        return redirect()->route('home')->with('success', $message);
+        return redirect()->route('home.index')->with('success', $message);
     }
 }

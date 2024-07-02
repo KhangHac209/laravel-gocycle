@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class OrderPayment extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'order_payment_method';
-
 
     public const RESPONSE_CODE_VNPAY = [
         "00" => "Giao dich thanh cong",

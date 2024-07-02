@@ -27,6 +27,9 @@
                 <section class="content">
                     <div class="container-fluid">
                         <div class="row">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Product Category Index</h1>
+                            </div>
                             <div class="col-md-12">
                                 <div class="card">
                                     @session('message')
@@ -34,7 +37,7 @@
                                     @endsession
                                     <div class="card-header">
                                         <h3 class="card-title">Bordered Table</h3>
-                                        <form method="get" action="{{ route('admin.product_category.index') }}"
+                                        {{-- <form method="get" action="{{ route('admin.product_category.index') }}"
                                             role="form">
                                             <input type="text" value="{{ request()->key ?? '' }}" id="key"
                                                 name='key' class="form-control" placeholder="Enter name">
@@ -46,7 +49,7 @@
                                                     Latest</option>
                                             </select>
                                             <button type="submit" class="btn btn-primary">Search</button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">

@@ -18,7 +18,7 @@
                     <div class="title">
                         <h2>{{ $product->name }}</h2>
                         <p class="price">
-                            <span class="{{ $product->discount !== 0 ? 'priceOld' : '' }}">
+                            <span class="{{ $product->discount !== 0 ? 'priceOld' : 'false' }}">
                                 {{ number_format($product->price, 2) }} $
                             </span>
                             @if ($product->discount !== 0)
@@ -90,7 +90,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    Swal.fire('Please login to add items to your cart.').then(() => {
+                    Swal.fire('Please login to continue').then(() => {
                         window.location.href = '{{ route('login') }}';
                     });
                 });

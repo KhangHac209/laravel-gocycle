@@ -6,7 +6,7 @@
         <div class="container">
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form method="post" action="{{ route('checkout.placeOrder') }}">
+                <form method="post" action="{{ route('checkout.placeOrder') }}" id="checkoutForm">
                     @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
@@ -21,8 +21,7 @@
 
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                                <input type="text" placeholder="Your Address" class="checkout__input__add">
                             </div>
 
                             <div class="row">
@@ -49,7 +48,8 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
                                 <h4>Your Order</h4>
-                                <div class="checkout__order__products">Products <span>Total</span></div>
+                                <div class="checkout__order__products">Products <span>Total</span>
+                                </div>
                                 <ul>
                                     @php $totalPrice=0; @endphp
                                     @foreach ($cart as $item)
@@ -69,7 +69,7 @@
 
                                 <div class="checkout__input__checkbox">
                                     <label for="cod">
-                                        Thanh toan truc tiep
+                                        Thanh toán trực tiếp
                                         <input type="checkbox" name="payment_method" id="cod" value="cod">
                                         <span class="checkmark"></span>
                                     </label>
@@ -97,4 +97,16 @@
         </div>
     </section>
     <!-- Checkout Section End -->
+@endsection
+
+@section('my-script')
+    <script type="text/javascript">
+        document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+            var checkboxes = document.querySelectorAll('input[name="payment_method"]:checked');
+            if (checkboxes.length === 0) {
+                event.preventDefault();
+                Swal.fire('Please select a payment method.');
+            }
+        });
+    </script>
 @endsection

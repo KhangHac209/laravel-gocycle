@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\Admin\ProductStoreRequest;
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
 use Illuminate\Http\Request;
@@ -98,6 +98,14 @@ class ProductController extends Controller
         $message = $product ? 'Tao san pham thanh cong' : 'Tao san pham that bai';
 
         return redirect()->route('admin.product.index')->with('message', $message);
+    }
+    public function search(Request $request, $keySearch)
+    {
+        // Tìm kiếm sản phẩm dựa trên tên (ví dụ: name là cột trong bảng product)
+        $products = Product::where('name', 'like', "%$keySearch%")->get();
+
+        // Trả về view hiển thị kết quả tìm kiếm và giá trị keySearch
+        return view('client.pages.searchProduct', ['products' => $products, 'keySearch' => $keySearch]);
     }
 
     /**

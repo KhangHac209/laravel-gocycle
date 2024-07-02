@@ -12,7 +12,7 @@
                     <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard v1</li>
                         </ol>
                     </div>
@@ -41,7 +41,7 @@
                             @endif
                             <div class="card-header">
                                 <h3 class="card-title">Bordered Table</h3>
-                                <form role="form" action="{{ route('admin.product_category.index') }}" method="GET">
+                                {{-- <form role="form" action="{{ route('admin.product_category.index') }}" method="GET">
                                     <div class="form-group">
                                         <input type="text" value="{{ request()->key ?? '' }}" name="key"
                                             class="form-control" id="name" placeholder="Enter name">
@@ -54,7 +54,7 @@
                                         </select>
                                         <button class="btn btn-primary" type="submit">Search</button>
                                     </div>
-                                </form>
+                                </form> --}}
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -81,12 +81,15 @@
                                                 {{-- <td>{{ $data->product_category_name }}</td> --}}
                                                 <td>{{ $data->status ? 'Show' : 'Hide' }}</td>
                                                 <td>
-                                                    {{-- @if ($data->trashed())
-                            <form action="{{ route('admin.product_category.restore', ['id' => $data->id]) }}" method="post">
-                              @csrf
-                              <button onclick="return confirm('Are you sure?')" class="btn btn-success" type="submit">Restore</button>
-                            </form>
-                          @endif --}}
+                                                    @if ($data->trashed())
+                                                        <form
+                                                            action="{{ route('admin.product_category.restore', ['id' => $data->id]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <button onclick="return confirm('Are you sure?')"
+                                                                class="btn btn-success" type="submit">Restore</button>
+                                                        </form>
+                                                    @endif
 
                                                     <form
                                                         action="{{ route('admin.product_category.destroy', ['productCategory' => $data->id]) }}"
@@ -95,8 +98,8 @@
                                                         <button onclick="return confirm('Are you sure?')"
                                                             class="btn btn-danger" type="submit">Delete</button>
                                                     </form>
-                                                    <a href="{{ route('admin.product_category.detail', ['productCategory' => $data->id]) }}"
-                                                        class="btn btn-info">Detail</a>
+                                                    {{-- <a href="{{ route('admin.product_category.detail', ['productCategory' => $data->id]) }}"
+                                                        class="btn btn-info">Detail</a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

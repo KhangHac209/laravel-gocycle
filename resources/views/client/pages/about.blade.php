@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <div class="thumb">
-                        <img src="https://probike.templaza.net/wp-content/uploads/2023/08/About-Us-2.jpg" alt=""
+                        <img src="https://xedapgiakho.vn/wp-content/uploads/2021/04/4000-1-1067x800.jpg" alt=""
                             class="img-fluid">
                     </div>
                 </div>

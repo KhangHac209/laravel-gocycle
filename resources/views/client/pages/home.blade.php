@@ -13,8 +13,8 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="thumb">
-                            <img src="https://probike.templaza.net/wp-content/uploads/2023/08/About-Us-2.jpg" alt=""
-                                class="img-fluid">
+                            <img src="https://xedapgiakho.vn/wp-content/uploads/2021/04/4000-1-1067x800.jpg"
+                                alt="" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
@@ -70,4 +70,34 @@
     </section>
 
     @include('client.pages.review')
+@endsection
+@section('my-script')
+    <script type="text/javascript">
+        $(document).ready(function(event) {
+            $('.btn-add-to-cart').on('click', function(event) {
+                event.preventDefault();
+                var productId = $(this).data('product-id');
+
+                $.ajax({
+                    url: "{{ route('cart.add') }}",
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        productId: productId,
+                    },
+                    success: function(response) {
+                        $('.fa-shopping-bag').siblings('span').html(response.totalProducts);
+                        $('.header__cart__price').children('span').html(response.totalPrice);
+
+                        Swal.fire(response.message);
+                    },
+                    statusCode: {
+                        401: function() {
+                            window.location.href = "{{ route('login') }}";
+                        }
+                    }
+                })
+            });
+        });
+    </script>
 @endsection

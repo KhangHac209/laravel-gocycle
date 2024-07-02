@@ -45,3 +45,5 @@ Route::get('/google/redirect', [GoogleController::class, 'redirect'])->name('goo
 Route::get('/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 
 Route::get('vnpay_callback', [CartController::class, 'vnpayCallback'])->name('vnpay_callback');
+
+Route::get('/search/{keySearch}', [ProductController::class, 'search'])->name('product.search');

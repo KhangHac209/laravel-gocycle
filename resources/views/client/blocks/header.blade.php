@@ -44,34 +44,37 @@
             <div class="collapse navbar-collapse choice" id="navbarScroll">
                 <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll">
                     <li class="nav-item" id="home">
-                        <a class="nav-link active" href="{{ url('/') }}">HOME</a>
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">HOME</a>
                     </li>
                     <li class="nav-item" id="about">
-                        <a class="nav-link" href="{{ url('/about') }}">ABOUT US</a>
+                        <a class="nav-link {{ request()->is('about') ? 'active' : '' }}"
+                            href="{{ url('/about') }}">ABOUT US</a>
                     </li>
                     <li class="nav-item" id="product">
-                        <a class="nav-link" href="{{ url('/product') }}">PRODUCTS</a>
+                        <a class="nav-link {{ request()->is('product') ? 'active' : '' }}"
+                            href="{{ url('/product') }}">PRODUCTS</a>
                     </li>
                     <li class="nav-item" id="blog">
-                        <a class="nav-link" href="{{ url('/blog') }}">BLOGS</a>
+                        <a class="nav-link {{ request()->is('blog') ? 'active' : '' }}"
+                            href="{{ url('/blog') }}">BLOGS</a>
                     </li>
                     <li class="nav-item" id="contact">
-                        <a class="nav-link" href="{{ url('/contact') }}">CONTACT</a>
+                        <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}"
+                            href="{{ url('/contact') }}">CONTACT</a>
                     </li>
                 </ul>
-                <div class="search d-flex">
-                    <input type="search" placeholder="Search Product" class="form-control inputSearch me-2"
-                        aria-label="Search" value="{{ old('keySearch') }}" onkeydown="handleSearch(event)" />
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
+            </div>
+            <div class="search d-flex">
+                <input type="search" placeholder="Search Product" class="form-control inputSearch me-2"
+                    aria-label="Search" value="{{ old('keySearch') }}" onkeydown="handleSearch(event)" />
+                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             @php
                 $totalProductInCart = count(session()->get('cart', []));
             @endphp
             <a href="{{ url('/cart') }}" class="cart">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <span>{{ $totalProductInCart }}</span></a></li>
-
+                <span>{{ $totalProductInCart }}</span>
             </a>
             <div class="user">
                 @guest
@@ -120,5 +123,30 @@
 
         // Run on page load
         setActiveLink();
+    });
+</script>
+<script>
+    function handleSearch(event) {
+        if (event.key === 'Enter') {
+            const searchQuery = event.target.value;
+            // Lưu từ khóa tìm kiếm vào sessionStorage
+            sessionStorage.setItem('searchQuery', searchQuery);
+            // Chuyển hướng đến trang tìm kiếm
+            window.location.href = `/search/${searchQuery}`;
+        }
+    }
+
+    // Xóa từ khóa tìm kiếm khi người dùng rời khỏi trang
+    window.addEventListener('beforeunload', function() {
+        sessionStorage.removeItem('searchQuery');
+    });
+
+    // Trên các trang hiển thị ô tìm kiếm, khôi phục từ khóa tìm kiếm trước đó nếu có
+    document.addEventListener('DOMContentLoaded', function() {
+        const storedSearchQuery = sessionStorage.getItem('searchQuery');
+        const searchInput = document.querySelector('.inputSearch');
+        if (storedSearchQuery && searchInput) {
+            searchInput.value = storedSearchQuery;
+        }
     });
 </script>

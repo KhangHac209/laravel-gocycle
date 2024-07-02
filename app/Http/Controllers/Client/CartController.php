@@ -223,9 +223,10 @@ class CartController extends Controller
     public function vnpayCallback(Request $request)
     {
         $order = Order::find($request->vnp_TxnRef);
-
+        
         $orderPayment = new OrderPayment();
-        $orderPayment->total = $order->total * 23500;
+        dd($orderPayment->total);
+        $orderPayment->total = $order->total;
         $orderPayment->payment_method = 'vnpay';
         $orderPayment->status = $request->vnp_ResponseCode === '00' ? 'success' : 'fail';
         $orderPayment->reason = OrderPayment::RESPONSE_CODE_VNPAY[$request->vnp_ResponseCode];
@@ -242,6 +243,6 @@ class CartController extends Controller
         }
 
         $orderPayment->save();
-        return redirect()->route('home.index')->with('success', $message);
+        return redirect()->route('home')->with('success', $message);
     }
 }

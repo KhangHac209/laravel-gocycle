@@ -39,20 +39,20 @@
                                 endtype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Name</label>
-                                        <input type="text" id="name" value="{{ old('name') }}" name='name'
-                                            class="form-control" id="exampleInputEmail1" placeholder="Enter name">
+                                        <label for="name">Name</label>
+                                        <input type="text" value="{{ old('name') }}" name="name"
+                                            class="form-control" id="name" placeholder="Enter name">
                                         @error('name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                            <span class="text-danger">{{ $message }}<span>
+                                                @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputSlug">Slug</label>
-                                        <input type="text" id="slug" value="{{ old('slug') }}" name='slug'
-                                            class="form-control" id="exampleInputSLug" placeholder="Slug">
+                                        <label for="slug">Slug</label>
+                                        <input type="text" value="{{ old('slug') }}" name="slug"
+                                            class="form-control" id="slug" placeholder="Enter slug">
                                         @error('slug')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                            <span class="text-danger">{{ $message }}<span>
+                                                @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputSlug">Price</label>
@@ -146,7 +146,7 @@
                     }
                 });
             });
-        }); <
+        });
     </script>
     <script>
         ClassicEditor

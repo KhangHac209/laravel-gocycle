@@ -84,6 +84,19 @@
 @section('my-script')
     <script type="text/javascript">
         $(document).ready(function(event) {
+            function updateCartTotal() {
+                let totalPrice = 0;
+                $('#table_cart tbody tr').each(function() {
+                    const price = parseFloat($(this).find('.shoping__cart__price').text().replace('$', ''));
+                    const qty = parseInt($(this).find('input').val());
+                    const total = price * qty;
+                    $(this).find('.shoping__cart__total').text('$' + total.toFixed(2));
+                    totalPrice += total;
+                });
+                $('#subtotalAmount').text('$' + totalPrice.toFixed(2));
+                $('#totalAmount').text('$' + totalPrice.toFixed(2));
+            }
+
             $('.btn-delete-cart').on('click', function(event) {
                 event.preventDefault();
                 $.ajax({
@@ -92,22 +105,25 @@
                     success: function(response) {
                         $('#table_cart').empty();
                         Swal.fire(response.message);
+                        updateCartTotal();
                     }
-                })
+                });
             });
+
             $('.shoping__cart__item__close').on('click', function() {
                 var productId = $(this).data('product-id');
-                var url = $(this).data('delete-item')
+                var url = $(this).data('delete-item');
                 $.ajax({
                     type: 'GET',
                     url: url,
                     success: function(response) {
-                        $('#tr-' + productId).empty();
-
+                        $('#tr-' + productId).remove();
                         Swal.fire(response.message);
+                        updateCartTotal();
                     }
-                })
+                });
             });
+
             $('.qtybtn').on('click', function() {
                 var btn = $(this);
                 var qty = parseInt(btn.siblings('input').val());
@@ -125,14 +141,15 @@
                     success: function(response) {
                         var productId = btn.parent().data('product-id');
                         if (qty === 0) {
-                            $('#tr-' + productId).empty();
+                            $('#tr-' + productId).remove();
                         } else {
-                            Swal.fire(response.message);
+                            btn.siblings('input').val(qty);
                         }
+                        Swal.fire(response.message);
+                        updateCartTotal();
                     }
                 });
-            })
-
+            });
         });
     </script>
 @endsection

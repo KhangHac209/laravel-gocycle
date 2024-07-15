@@ -38,7 +38,7 @@
                             <a href="{{ route('admin.dashboard') }}"
                                 class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Dash Board</p>
+                                <p>DashBoard</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -63,11 +63,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            {{-- <a href="{{ route('admin.product.create') }}"
+                            <a href="{{ route('admin.product.create') }}"
                                 class="nav-link {{ request()->routeIs('admin.product.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Product</p>
-                            </a> --}}
+                            </a>
                         </li>
                     </ul>
                 </li>

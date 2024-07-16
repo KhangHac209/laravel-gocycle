@@ -62,13 +62,13 @@
                                 <p>Create Category</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('admin.product.create') }}"
                                 class="nav-link {{ request()->routeIs('admin.product.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Product</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
             </ul>

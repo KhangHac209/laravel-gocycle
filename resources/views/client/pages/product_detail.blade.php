@@ -53,7 +53,7 @@
                             <i type="plus" onclick="handleChange('plus')" class="fa-solid fa-plus"></i>
                         </div>
                     </div> --}}
-                    <button class="clickButton" onclick="handleAddCart()">
+                    <button data-product-id={{ $product->id }} class="clickButton btn-add-to-cart">
                         ADD TO CART
                     </button>
                     <div class="parameter">
@@ -119,38 +119,38 @@
             quantityInput.value = quantity;
         }
 
-        function handleAddCart() {
-            const quantity = document.querySelector('input[name="quantity"]').value;
-            const productId = '{{ $product->id }}';
+        // function handleAddCart() {
+        //     const quantity = document.querySelector('input[name="quantity"]').value;
+        //     const productId = '{{ $product->id }}';
 
-            fetch("{{ route('cart.add') }}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        productId: productId,
-                        qty: quantity
-                    })
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    Swal.fire('Add To Cart Success!');
-                    updateCartUI(data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire('Please login to continue').then(() => {
-                        window.location.href = '{{ route('login') }}';
-                    });
-                });
-        }
+        //     fetch("{{ route('cart.add') }}", {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        //             },
+        //             body: JSON.stringify({
+        //                 productId: productId,
+        //                 qty: quantity
+        //             })
+        //         })
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('Network response was not ok');
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             Swal.fire('Add To Cart Success!');
+        //             updateCartUI(data);
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //             Swal.fire('Please login to continue').then(() => {
+        //                 window.location.href = '{{ route('login') }}';
+        //             });
+        //         });
+        // }
 
         function updateCartUI(data) {
             const qtyElement = document.getElementById(`qty_${data.productId}`);
@@ -188,6 +188,36 @@
                         }
                     }
                 ]
+            });
+        });
+    </script>
+@endsection
+@section('my-script')
+    <script type="text/javascript">
+        $(document).ready(function(event) {
+            $('.btn-add-to-cart').on('click', function(event) {
+                event.preventDefault();
+                var productId = $(this).data('product-id');
+
+                $.ajax({
+                    url: "{{ route('cart.add') }}",
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        productId: productId,
+                    },
+                    success: function(response) {
+                        $('.fa-cart-shopping').siblings('span').html(response.totalProducts);
+                        Swal.fire(response.message);
+                    },
+                    statusCode: {
+                        401: function() {
+                            Swal.fire('Please login to continue').then(() => {
+                                window.location.href = '{{ route('login') }}';
+                            });
+                        }
+                    }
+                })
             });
         });
     </script>

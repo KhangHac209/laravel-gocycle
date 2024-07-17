@@ -20,4 +20,5 @@ Route::prefix('admin/product_category')
         Route::post('update/{productCategory}', 'update')->name('update');
     });
 Route::name('admin')->resource('admin/product', ProductController::class)->middleware('check.user.admin');
+Route::get('admin/detail/{product}', [ProductController::class, 'detailProduct'])->middleware('check.user.admin')->name('admin.product.detailProduct');
 Route::get('admin/dashboard', [DashboardController::class, 'index'])->middleware('check.user.admin')->name('admin.dashboard');

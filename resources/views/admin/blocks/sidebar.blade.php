@@ -15,7 +15,7 @@
                     alt="User Image" />
             </div>
             <div class="info">
-                <a href="#" class="d-block">Khang</a>
+                <a href="#" class="d-block">Admin</a>
             </div>
         </div>
 
@@ -48,13 +48,13 @@
                                 <p>Product Category</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('admin.product.index') }}"
                                 class="nav-link {{ request()->routeIs('admin.product.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ route('admin.product_category.create') }}"
                                 class="nav-link {{ request()->routeIs('admin.product_category.create') ? 'active' : '' }}">

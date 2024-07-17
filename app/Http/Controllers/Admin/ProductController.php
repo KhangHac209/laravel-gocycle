@@ -80,19 +80,20 @@ class ProductController extends Controller
         $product->status = $request->status;
         $product->product_category_id = $request->product_category_id;
 
-        if ($request->hasFile('image_url')) {
-            $file = $request->file('image_url');
-            $originName = $file->getClientOriginalName();
+        // if ($request->hasFile('image_url')) {
+        //     $file = $request->file('image_url');
+        //     $originName = $file->getClientOriginalName();
 
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $fileName = $fileName . '_' . uniqid() . '.' . $extension;
+        //     $fileName = pathinfo($originName, PATHINFO_FILENAME);
+        //     $extension = $file->getClientOriginalExtension();
+        //     $fileName = $fileName . '_' . uniqid() . '.' . $extension;
 
-            //move_uploaded_file()
-            $file->move(public_path('images'), $fileName);
-        }
+        //     //move_uploaded_file()
+        //     $file->move(public_path('images'), $fileName);
+        // }
 
-        $product->image_url = $fileName;
+        // $product->image_url = $fileName;
+
         $product->save(); // insert
 
         $message = $product ? 'Tao san pham thanh cong' : 'Tao san pham that bai';
@@ -145,8 +146,29 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    // public function destroy(Request $request, Product $product)
+    // {
+    //     // $id = $request->id;
+    //     $result = $product->delete();
+    //     // $delete = DB::table('product_category')->where('id', $id)->delete();
+
+    //     //Eloquent - ORM
+    //     // $delete = ProductCategory::find($id)->delete();
+
+    //     $message = $result ? 'Xoa thanh cong' : 'Xoa that bai';
+    //     return redirect()->route('admin.product.index')->with('message', $message);
+    // }
+    // public function restore(Request $request, int $id)
+    // {
+    //     $id = $request->id;
+
+    //     //Eloquent
+    //     $data = Product::withTrashed()->find($id)->restore();
+    //     return redirect()->route('admin.product.index')->with('message', 'Khoi phuc thanh cong');
+    // }
+    public function detailProduct(Request $request, Product $product)
     {
-        //
+        $productCategories = ProductCategory::all();
+        return view('admin.pages.product.detail', ['data' => $product, 'productCategories' => $productCategories]);
     }
 }

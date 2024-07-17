@@ -67,6 +67,7 @@
                                             <th>Description</th>
                                             <th>Product Category</th>
                                             <th>Status</th>
+                                            <th>Detail</th>
                                             <th style="width: 40px">Action</th>
                                         </tr>
                                     </thead>
@@ -81,6 +82,10 @@
                                                 {{-- <td>{{ $data->product_category_name }}</td> --}}
                                                 <td>{{ $data->status ? 'Show' : 'Hide' }}</td>
                                                 <td>
+                                                    <a
+                                                        href="{{ route('admin.product.detailProduct', ['product' => $data->id]) }}">Detail</a>
+                                                </td>
+                                                <td>
                                                     @if ($data->trashed())
                                                         <form
                                                             action="{{ route('admin.product_category.restore', ['id' => $data->id]) }}"
@@ -90,14 +95,18 @@
                                                                 class="btn btn-success" type="submit">Restore</button>
                                                         </form>
                                                     @endif
-
-                                                    <form
+                                                    <form method="post">
+                                                        @csrf
+                                                        <button onclick="return confirm('Are you sure?')"
+                                                            class="btn btn-danger" type="submit">Delete</button>
+                                                    </form>
+                                                    {{-- <form
                                                         action="{{ route('admin.product_category.destroy', ['productCategory' => $data->id]) }}"
                                                         method="post">
                                                         @csrf
                                                         <button onclick="return confirm('Are you sure?')"
                                                             class="btn btn-danger" type="submit">Delete</button>
-                                                    </form>
+                                                    </form> --}}
                                                     {{-- <a href="{{ route('admin.product_category.detail', ['productCategory' => $data->id]) }}"
                                                         class="btn btn-info">Detail</a> --}}
                                                 </td>

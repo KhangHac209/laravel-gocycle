@@ -52,6 +52,7 @@ class CartController extends Controller
             'name' => $product->name,
             'qty' => isset($cart[$productId]) ? ($cart[$productId]['qty'] + 1) : 1,
             'price' => $product->price,
+            'discount' => $product->discount,
         ];
         $totalProducts = count($cart);
         $totalPrice = 0;

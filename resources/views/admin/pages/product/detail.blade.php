@@ -35,7 +35,8 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form role="form" method="post" action="{{ route('admin.product.store') }}"
+                            <form role="form" method="post"
+                                action="{{ route('admin.product.update', ['product' => $data->id]) }}"
                                 endtype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="form-group">
@@ -114,7 +115,7 @@
 
                                 <div class="card-footer">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -147,12 +148,5 @@
                 });
             });
         });
-    </script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
     </script>
 @endsection

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="brand">
-                        <h2>Brand Products</h2>
+                        <h2><a href="/product">Brand Products</a></h2>
                         <form id="filter-form">
                             <ul class="option">
                                 <li><a
@@ -62,7 +62,7 @@
                                     </div>
                                     <p class="price">
                                         <span
-                                            class="{{ $product->discount !== 0 ? 'priceOld' : '' }}">{{ $product->price }}.00
+                                            class="{{ $product->discount !== 0 ? 'priceOld' : '' }}">{{ number_format($product->price, 2) }}
                                             $</span>
                                         @if ($product->discount !== 0)
                                             <span
@@ -81,41 +81,42 @@
             </div>
         </div>
     </div>
-    <script>
-        function filterProducts(brand) {
-            $.ajax({
-                url: '{{ route('products.index') }}',
-                type: 'GET',
-                data: {
-                    brand: brand,
-                    min_price: '{{ request('min_price') }}',
-                    max_price: '{{ request('max_price') }}'
-                },
-                success: function(response) {
-                    $('#product-list').html(response);
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
-                }
-            });
-        }
-
-        function filterByPrice(minPrice, maxPrice) {
-            $.ajax({
-                url: '{{ route('products.index') }}',
-                type: 'GET',
-                data: {
-                    brand: '{{ request('brand') }}',
-                    min_price: minPrice,
-                    max_price: maxPrice
-                },
-                success: function(response) {
-                    $('#product-list').html(response);
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
-                }
-            });
-        }
-    </script>
 @endsection
+
+<script>
+    function filterProducts(brand) {
+        $.ajax({
+            url: '{{ route('products.index') }}',
+            type: 'GET',
+            data: {
+                brand: brand,
+                min_price: '{{ request('min_price') }}',
+                max_price: '{{ request('max_price') }}'
+            },
+            success: function(response) {
+                $('#product-list').html(response);
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+
+    function filterByPrice(minPrice, maxPrice) {
+        $.ajax({
+            url: '{{ route('products.index') }}',
+            type: 'GET',
+            data: {
+                brand: '{{ request('brand') }}',
+                min_price: minPrice,
+                max_price: maxPrice
+            },
+            success: function(response) {
+                $('#product-list').html(response);
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+</script>

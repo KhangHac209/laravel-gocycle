@@ -24,7 +24,11 @@
                                             <h5>{{ $item['name'] }}</h5>
                                         </td>
                                         <td class="shoping__cart__price">
-                                            ${{ number_format($item['price'], 2) }}
+                                            @if (isset($item['discount']) && $item['discount'] == 30)
+                                                ${{ number_format($item['price'] * 0.7, 2) }}
+                                            @else
+                                                ${{ number_format($item['price'], 2) }}
+                                            @endif
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
@@ -35,8 +39,14 @@
                                             </div>
                                         </td>
                                         <td class="shoping__cart__total">
-                                            ${{ number_format($item['price'] * $item['qty'], 2) }}
+                                            @if (isset($item['discount']) && $item['discount'] == 30)
+                                                ${{ number_format($item['price'] * 0.7 * $item['qty'], 2) }}
+                                            @else
+                                                ${{ number_format($item['price'] * $item['qty'], 2) }}
+                                            @endif
                                         </td>
+
+
                                         <td data-delete-item="{{ route('cart.delete.item.cart', ['productId' => $productId]) }}"
                                             data-product-id="{{ $productId }}" class="shoping__cart__item__close">
                                             <span class="icon_close"></span>
